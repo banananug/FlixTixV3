@@ -8,8 +8,8 @@ using System.Web.UI.WebControls;
 
 public partial class Pay : System.Web.UI.Page
 {
-    SqlCommand sqlCommand1;//will be availabe for all function
-    SqlConnection sqlConnection1;//will be availabe for all function
+    SqlCommand sqlCommand1;//will be availabe for all functions
+    SqlConnection sqlConnection1;//will be availabe for all functions
     string  SeatesInfoStr; int counter ;
     static string snackStr;
     bool[,] seatesData = new bool[5, 5];
