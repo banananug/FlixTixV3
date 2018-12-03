@@ -8,8 +8,8 @@ using System.Web.UI.WebControls;
 
 public partial class Home : System.Web.UI.Page
 {
-    SqlCommand sqlCommand1;//will be availabe for all function
-    SqlConnection sqlConnection1;//will be availabe for all function
+    SqlCommand sqlCommand1;//will be availabe for all functions
+    SqlConnection sqlConnection1;//will be availabe for all functions
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -35,7 +35,7 @@ public partial class Home : System.Web.UI.Page
         else if (SqlDataReader1.Read())
         {
             sqlCommand1.Connection.Close();         //close the command object
-            SqlDataReader1.Close();                 //you have to close the Reader in order to use the Command again!
+            SqlDataReader1.Close();                 //close the Reader
             Session["UserName"] = txtUserName.Text;
             Guid uid = Guid.NewGuid();
             HttpCookie myCookie = new HttpCookie("UniqueID");
