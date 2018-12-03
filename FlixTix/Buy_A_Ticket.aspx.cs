@@ -9,11 +9,11 @@ using System.Web.UI.WebControls;
 
 public partial class Buy_A_Ticket : System.Web.UI.Page
 {
-    SqlCommand sqlCommand1;//will be availabe for all function
-    SqlConnection sqlConnection1;//will be availabe for all function
+    SqlCommand sqlCommand1;//will be availabe for all functions
+    SqlConnection sqlConnection1;//will be availabe for all functions
     public static string FilmName = "";
     CheckBox[,] Seats = new CheckBox[5, 5];
-    //bool[,] seatsData = new bool[5, 5];
+    //bool[,] seatsData = new bool[5, 5]; //may not be necessary
     bool[,] selectedSeatsData = new bool[5, 5];
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -31,7 +31,7 @@ public partial class Buy_A_Ticket : System.Web.UI.Page
         Session["UserId"] = Int32.Parse(SqlDataReader1["Id"].ToString());
         sqlCommand1.Connection.Close();         //close the command object
         SqlDataReader1.Close();
-        //LOADING MOVIES FROM DATABASE AND MAKING LINK BUTTONS 
+        //loading from database
         sqlCommand1 = new SqlCommand("SELECT * FROM Films", sqlConnection1);
         sqlCommand1.Connection.Open();					//open the command connection
         SqlDataReader1 = sqlCommand1.ExecuteReader();	//the Reader gets the selected records
@@ -94,7 +94,7 @@ public partial class Buy_A_Ticket : System.Web.UI.Page
         //the connection object
         string constr = @"Data Source=NICHOLAS\SQLEXPRESS;Initial Catalog=FlixTix;Integrated Security=True";
         sqlConnection1 = new System.Data.SqlClient.SqlConnection(constr);			//the command object
-        //CHANGE POSTER AND FILM NAME LABEL
+        //update poster and info as per movie selection
         sqlCommand1 = new SqlCommand("SELECT * FROM Films WHERE Poster=@poster", sqlConnection1);
         sqlCommand1.Parameters.AddWithValue("@Poster", id + ".jpg");
         sqlCommand1.Connection.Open();					//open the command connection
@@ -105,7 +105,7 @@ public partial class Buy_A_Ticket : System.Web.UI.Page
         tmpFilmName.Text = FilmName = SqlDataReader1["Title"].ToString();
         sqlCommand1.Connection.Close();         //close the command object
         SqlDataReader1.Close();
-        //ENABLING CHECKBOXES THAT WERE DISABLED FOR OTHER FILM
+        //re-enable checkboxes
         if (selectedSeatsData != null)
         {
             for (int row = 0; row < 5; row++)
@@ -116,7 +116,7 @@ public partial class Buy_A_Ticket : System.Web.UI.Page
                 }
             }
         }
-        //DISABLING PURCHASED TICKET PER MOVIE
+        //disable purchased ticket
         sqlCommand1 = new SqlCommand("SELECT Seats FROM Orders WHERE FilmId=@FilmId", sqlConnection1);
         sqlCommand1.Parameters.AddWithValue("@FilmId", FilmId);
         sqlCommand1.Connection.Open();					//open the command connection
