@@ -8,8 +8,8 @@ using System.Web.UI.WebControls;
 
 public partial class Orders : System.Web.UI.Page
 {
-    SqlCommand sqlCommand1,sqlCommand2;//will be availabe for all function
-    SqlConnection sqlConnection1,sqlConnection2;//will be availabe for all function
+    SqlCommand sqlCommand1,sqlCommand2;//will be availabe for all functions
+    SqlConnection sqlConnection1,sqlConnection2;//will be availabe for all functions
     protected void Page_Load(object sender, EventArgs e)
     {
         System.Data.SqlClient.SqlDataReader SqlDataReader1,SqlDataReader2;
